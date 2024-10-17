@@ -2,7 +2,7 @@
 Smart EQ - xsq_v2data: DEV script
 ============================
 
-This modul copy the xsq metrics to persident metrics
+copy the xsq metrics to standard metrics
 
 ------------
 Installation

@@ -7,6 +7,7 @@
   "maintainer": "ZorG <zorg.smart@gmail.com>",
   "version": "1.0",
   "prerequisites": ["ovms>=3.3.004-239"],
+  "elements": [{
     "type": "module",
     "path": "booster_12V.js",
     "name": "booster_12V"

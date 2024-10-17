@@ -1,0 +1,78 @@
+[
+    {
+        "name": "booster_12V",
+        "title": "check and charge 12V",
+        "description": "check and charge the 12V battery two times on day",
+        "group": "Electric Vehicles",
+        "info": "http://www.openvehicles.com/",
+        "maintainer": "ZorG <zorg.smart@gmail.com>",
+        "version": "1.0",
+        "prerequisites": [
+            "ovms>=3.3.004-239"
+        ],
+        "elements": [
+            {
+                "type": "module",
+                "path": "booster_12V.js",
+                "name": "booster_12V"
+            }
+        ]
+    },
+    {
+        "name": "gps_onoff",
+        "title": "switch off GPS",
+        "description": "switch off GPS when parking for power saving",
+        "group": "Electric Vehicles",
+        "info": "http://www.openvehicles.com/",
+        "maintainer": "ZorG <zorg.smart@gmail.com>",
+        "version": "1.0",
+        "prerequisites": [
+            "ovms>=3.3.004-239"
+        ],
+        "elements": [
+            {
+                "type": "module",
+                "path": "gps_onoff.js",
+                "name": "gps_onoff"
+            }
+        ]
+    },
+    {
+        "name": "scheduled_booster",
+        "title": "Scheduled Booster",
+        "description": "Time-controlled climate activation for Smart EQ (453)",
+        "group": "Electric Vehicles",
+        "info": "http://www.openvehicles.com/",
+        "maintainer": "ZorG <zorg.smart@gmail.com>",
+        "version": "1.0",
+        "prerequisites": [
+            "ovms>=3.3.004-239"
+        ],
+        "elements": [
+            {
+                "type": "module",
+                "path": "scheduled_booster.js",
+                "name": "scheduled_booster"
+            }
+        ]
+    },
+    {
+        "name": "xsq_v2data",
+        "title": "xsq_V2data",
+        "description": "copy xsq metrics to standrad metrics",
+        "group": "Electric Vehicles",
+        "info": "http://www.openvehicles.com/",
+        "maintainer": "ZorG <zorg.smart@gmail.com>",
+        "version": "1.0",
+        "prerequisites": [
+            "ovms>=3.3.004-239"
+        ],
+        "elements": [
+            {
+                "type": "module",
+                "path": "xsq_v2data.js",
+                "name": "xsq_v2data"
+            }
+        ]
+    }
+]

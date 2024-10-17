@@ -1,8 +1,8 @@
 ============================
-Smart EQ - scheduled_booster: scheduled Booster 
+scheduled_booster: scheduled Booster 
 ============================
 
-At Android App you can set the Booster time and so on.
+Time-controlled climate activation for Smart EQ (453)
 
 ------------
 Installation
