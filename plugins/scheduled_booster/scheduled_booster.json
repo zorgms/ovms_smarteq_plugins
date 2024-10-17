@@ -1,12 +1,12 @@
 {
   "name": "scheduled_booster",
-  "title": "Smart EQ plugin: scheduled the Booster",
+  "title": "Scheduled Booster",
   "description": "Time-controlled climate activation for Smart EQ (453)",
-  "group": "Development",
+  "group": "Electric Vehicles",
   "info": "http://www.openvehicles.com/",
   "maintainer": "ZorG <zorg.smart@gmail.com>",
   "version": "1.0",
-  "prerequisites": ["ovms>=3.2.014"],
+  "prerequisites": ["ovms>=3.3.004-239"],
   "elements": [{
     "type": "module",
     "path": "scheduled_booster.js",
