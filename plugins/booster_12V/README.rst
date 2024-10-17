@@ -1,19 +1,25 @@
-=============================
-ABRP: abetterrouteplanner.com
-=============================
+============================
+Smart EQ - booster_12V: 12V Check'n'charge
+============================
 
-**Send live telemetry to abetterrouteplanner.com**
+The module plugin checked the 12V battery metrics (voltage) twice per day.
+If the 12V less then 12V alert setting, this plugin start the Booster two times to charge the 12V
 
-Overview
-========
+------------
+Installation
+------------
 
-`A Better Routeplanner (ABRP) <https://abetterrouteplanner.com>`_ is an electric
-vehicle (EV) focussed route planner that incorporates planning of EV charging
-stops.
+1. Save :download:`booster_12V.js` as ``/store/scripts/lib/booster_12V.js``
+2. Add line to ``/store/scripts/ovmsmain.js``:
 
-The OVMS plugin sends live telemetry data from the vehicle to ABRP to be used
-for the route planning process and appropriate updates to the plan along the way
-based on live information.
+  - ``booster_12V = require("lib/booster_12V");``
 
-Refer to the installation instructions at the `Internio ovms-link repo
-<https://github.com/iternio/ovms-link>`_
+3. Issue ``script reload`` or evaluate the ``require`` line
+
+-------------
+Configuration
+-------------
+
+----------
+Plugin API
+----------
