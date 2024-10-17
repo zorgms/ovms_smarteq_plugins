@@ -1,7 +1,7 @@
 {
   "name": "scheduled_booster",
   "title": "Smart EQ plugin: scheduled the Booster",
-  "description": "This plugin added the scheduled Booster function.",
+  "description": "Time-controlled climate activation for Smart EQ (453)",
   "group": "Development",
   "info": "http://www.openvehicles.com/",
   "maintainer": "ZorG <zorg.smart@gmail.com>",
