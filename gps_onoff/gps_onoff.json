@@ -1,0 +1,15 @@
+{
+  "name": "gps_onoff",
+  "title": "Smart EQ plugin: switch off GPS at parking",
+  "description": "This plugin switch of the GPS for energy saving",
+  "group": "Development",
+  "info": "http://www.openvehicles.com/",
+  "maintainer": "ZorG <zorg.smart@gmail.com>",
+  "version": "1.0",
+  "prerequisites": ["ovms>=3.2.014"],
+  "elements": [{
+    "type": "module",
+    "path": "gps_onoff.js",
+    "name": "gps_onoff"
+  }]
+}

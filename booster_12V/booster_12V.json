@@ -1,0 +1,15 @@
+{
+  "name": "booster_12V",
+  "title": "Smart EQ plugin: charge 12V",
+  "description": "This plugin check'n'charge the 12V battery two times on day",
+  "group": "Development",
+  "info": "http://www.openvehicles.com/",
+  "maintainer": "ZorG <zorg.smart@gmail.com>",
+  "version": "1.0",
+  "prerequisites": ["ovms>=3.2.014"],
+  "elements": [{
+    "type": "module",
+    "path": "booster_12V.js",
+    "name": "booster_12V"
+  }]
+}
