@@ -64,29 +64,3 @@ the file using ``vfs rm /store/scripts/lib/…``.
 
 
 .. _installing-web-plugins:
-
-----------------------
-Installing Web Plugins
-----------------------
-
-A web plugin normally consists of a single HTML file. Web plugins can be meant to render
-new pages or to hook into an existing page. They need an initial registration to work:
-
-1. Menu **Config → Web Plugins**
-2. :guilabel:`✚` (add)
-3. Set type and name as suggested in the plugin documentation
-4. :guilabel:`Save`
-5. :guilabel:`Edit`
-6. Set attributes as suggested in the plugin documentation
-7. Paste the plugin source into the content area
-8. :guilabel:`Save`
-
-The plugin is now installed and activated.
-
-**Hint**: you can use the text editor (tools menu) to change or update an already installed
-web plugin. Simply edit the plugin file in folder ``/store/plugin/`` directly, the system will
-reload the plugin as soon as you save it.
-
-To deactivate a web plugin, set the state to "off". To remove a plugin, click :guilabel:`✖`
-→ :guilabel:`Save`.
-
