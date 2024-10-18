@@ -30,7 +30,7 @@ var state = {
 
 // get/set value
 OvmsConfig.Delete("usr", "b.data");
-var scheduled_ticker = 'ticker.' + OvmsConfig.Get("usr","b.ticker","30");
+var scheduled_ticker = 'ticker.' + OvmsConfig.Get("usr","b.ticker","10");
 
 function veh_on() {
     return OvmsMetrics.Value("v.e.on");

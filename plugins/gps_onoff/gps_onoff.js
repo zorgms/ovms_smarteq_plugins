@@ -3,7 +3,6 @@
      - Save as /store/scripts/lib/gps_onoff.js
      - Add to /store/scripts/ovmsmain.js: gps_onoff = require("lib/gps_onoff");
      - Issue "script reload"
-     //OvmsNotify.Raise("info", "usr.myplugin.status", "Alive booster event!");
 */
 
 

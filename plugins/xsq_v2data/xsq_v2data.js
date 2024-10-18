@@ -56,5 +56,4 @@ function xsq_data_v2() {
 // event creating
 if(xsq_activated == "yes"){
     PubSub.subscribe(xsq_ticker,xsq_data_v2);
-    // PubSub.subscribe('vehicle.awake',xsq_data_v2);
 }
