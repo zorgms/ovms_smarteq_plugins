@@ -37,21 +37,32 @@ function xsq_data_v2() {
     var xsq_activated = OvmsConfig.Get("usr","xsq.activated","yes");
 
     if((xsq_activated == "yes") && (veh_on() || charging() || bus_awake())) {
-        //var xsq_power_bms = OvmsMetrics.Value("xsq.bms.power");
-        var xsq_obl_power = OvmsMetrics.Value("xsq.obl.power");
-        var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
+        /*
+        var xsq_power_bms = OvmsMetrics.Value("xsq.bms.power");
         var xsq_amp2 = OvmsMetrics.Value("xsq.bms.amp2");
         var xsq_voltage = OvmsMetrics.Value("xsq.bms.batt.link.voltage");
         var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
+        */
+        var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
+        var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
+        var xsq_obl_amps = OvmsMetrics.Value("xsq.obl.amps");
+        var xsq_obl_power = OvmsMetrics.Value("xsq.obl.power");
+        var xsq_obl_volts = OvmsMetrics.Value("xsq.obl.volts");
         var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
 
-        //OvmsCommand.Exec('me set v.c.power '+ xsq_power_bms);
-        OvmsCommand.Exec('me set v.c.power '+ xsq_obl_power);
-        OvmsCommand.Exec('me set v.c.kwh '+ xsq_energy_hv);
+        /*
+        OvmsCommand.Exec('me set v.c.power '+ xsq_power_bms);
         OvmsCommand.Exec('me set v.c.current '+ xsq_amp2);
         OvmsCommand.Exec('me set v.c.voltage '+ xsq_voltage);
         OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
-        OvmsCommand.Exec('me set v.b.energy.used '+ xsq_use_reset);
+        */
+       
+        OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
+        OvmsCommand.Exec('me set v.c.kwh '+ xsq_energy_hv);
+        OvmsCommand.Exec('me set v.c.current '+ xsq_obl_amps);
+        OvmsCommand.Exec('me set v.c.power '+ xsq_obl_power);
+        OvmsCommand.Exec('me set v.c.voltage '+ xsq_obl_volts);
+        OvmsCommand.Exec('me set v.b.energy.used.total '+ xsq_use_reset);
     }
 }
 
