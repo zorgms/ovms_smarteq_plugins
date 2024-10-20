@@ -15,6 +15,11 @@ if(init_usrcfg == "no"){
     OvmsConfig.Set("usr", "xsq.ticker", "10");     	// ticker format 1/10/60/300/600/3600 seconds
 }
 
+var state = {
+    start_charging: false,       // switch for start charge
+    start_kwh: 0.00
+};
+
 // delete old events
 PubSub.unsubscribe(xsq_data_v2);
 
@@ -59,11 +64,23 @@ function xsq_data_v2() {
         */
        
         OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
-        OvmsCommand.Exec('me set v.c.kwh '+ xsq_energy_hv);
         OvmsCommand.Exec('me set v.c.current '+ xsq_obl_amps);
         OvmsCommand.Exec('me set v.c.power '+ xsq_obl_power);
         OvmsCommand.Exec('me set v.c.voltage '+ xsq_obl_volts);
-        OvmsCommand.Exec('me set v.b.energy.used '+ xsq_use_reset);
+        OvmsCommand.Exec('me set v.b.power '+ xsq_energy_hv);
+        OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
+
+        if(charging() && !state.start_charging){
+            state.start_charging = true;
+            state.start_kwh = xsq_energy_hv;
+        }
+        if(!charging() && state.start_charging){
+            state.start_charging = false;
+        }
+        if(state.start_charging){
+            var charged = Number(xsq_energy_hv) - Number(state.start_kwh);
+            OvmsCommand.Exec('me set v.c.kwh '+ charged);
+        }
     }
 }
 
