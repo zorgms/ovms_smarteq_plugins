@@ -55,6 +55,7 @@ function xsq_data_v2() {
         OvmsCommand.Exec('me set v.c.current '+ xsq_amp2);
         OvmsCommand.Exec('me set v.c.voltage '+ xsq_voltage);
         OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
+        OvmsCommand.Exec('me set v.b.energy.used.total '+ xsq_use_reset);
         */
        
         OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
@@ -62,7 +63,7 @@ function xsq_data_v2() {
         OvmsCommand.Exec('me set v.c.current '+ xsq_obl_amps);
         OvmsCommand.Exec('me set v.c.power '+ xsq_obl_power);
         OvmsCommand.Exec('me set v.c.voltage '+ xsq_obl_volts);
-        OvmsCommand.Exec('me set v.b.energy.used.total '+ xsq_use_reset);
+        OvmsCommand.Exec('me set v.b.energy.used '+ xsq_use_reset);
     }
 }
 
