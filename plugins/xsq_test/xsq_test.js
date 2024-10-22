@@ -47,6 +47,8 @@ function xsq_data_v2() {
 
         var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
 
+        //  config set usr xsq.data 0,0,0,0,0,1
+
         if (newdata[0] == 1) {
             var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
             OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
