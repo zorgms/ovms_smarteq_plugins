@@ -5,7 +5,6 @@
      - Issue "script reload"
 */
 
-
 // create config usr value
 var init_usrcfg = OvmsConfig.Get("usr","gps.init", "no");
 
@@ -19,6 +18,10 @@ if(init_usrcfg == "no"){
     OvmsConfig.Set("usr", "gps.counter_add","5");       // add 5 cycle to check interval for GPS power off
     OvmsConfig.Set("usr", "gps.power_switch", "yes");   // create network power up/down event
 }
+
+var state = {
+    gps_counter: 0
+};
 
 // delete old events
 PubSub.unsubscribe(usr_gps_check);
@@ -40,21 +43,22 @@ function usr_gps_check() {
 
     if(!veh_on() && !charging()) {        
         var gps_parktime = OvmsConfig.Get("usr", "gps.parktime","300");
-        var gps_counter = Number(OvmsConfig.Get("usr", "gps.counter","0"));
+        //var gps_counter = Number(OvmsConfig.Get("usr", "gps.counter","0"));
         var gps_counter_value = Number(OvmsConfig.Get("usr", "gps.counter_value","55"));
         var gps_counter_add = Number(OvmsConfig.Get("usr", "gps.counter_add","5"));
         var me_parktime = OvmsMetrics.Value("v.e.parktime");
         
         if( me_parktime >= gps_parktime ){
-            OvmsConfig.Set("usr", "gps.counter", (gps_counter +1));
-            if( (gps_on == "no")&&(gps_counter >= gps_counter_value) ){
+            state.gps_counter = state.gps_counter +1;
+            if( (gps_on == "no")&&(state.gps_counter >= gps_counter_value) ){
                 OvmsCommand.Exec('cellular gps start');
                 OvmsConfig.Set("usr", "gps.on", "yes");
             }else{
-                if( (gps_on == "yes")&&(gps_counter >= (gps_counter_value + gps_counter_add)) ){
+                if( (gps_on == "yes")&&(state.gps_counter >= (gps_counter_value + gps_counter_add)) ){
                     OvmsCommand.Exec('cellular gps stop');
                     OvmsConfig.Set("usr", "gps.on", "no");
-                    OvmsConfig.Set("usr", "gps.counter", "0");
+                    //OvmsConfig.Set("usr", "gps.counter", "0");
+                    state.gps_counter = 0;
                 }
             }
         }
@@ -62,7 +66,8 @@ function usr_gps_check() {
         if (gps_on == "no") {
             OvmsCommand.Exec('cellular gps start');
             OvmsConfig.Set("usr", "gps.on", "yes");
-            OvmsConfig.Set("usr", "gps.counter", "0");
+            //OvmsConfig.Set("usr", "gps.counter", "0");
+            state.gps_counter = 0;
         }
     }
 }

@@ -1,15 +1,15 @@
 {
-  "name": "xsq_v2data",
-  "title": "xsq_V2data",
+  "name": "xsq_test",
+  "title": "xsq_test",
   "description": "copy xsq metrics to standard metrics",
   "group": "Electric Vehicles",
   "info": "http://www.openvehicles.com/",
   "maintainer": "ZorG <zorg.smart@gmail.com>",
-  "version": "1.3.3",
+  "version": "1.0.0",
   "prerequisites": ["ovms>=3.3.004-267"],
   "elements": [{
     "type": "module",
-    "path": "xsq_v2data.js",
-    "name": "xsq_v2data"
+    "path": "xsq_test.js",
+    "name": "xsq_test"
   }]
 }

@@ -1,7 +1,7 @@
 /*
     Installation:
-     - Save as /store/scripts/lib/xsq_v2data.js
-     - Add to /store/scripts/ovmsmain.js: xsq_v2data = require("lib/xsq_v2data");
+     - Save as /store/scripts/lib/xsq_test.js
+     - Add to /store/scripts/ovmsmain.js: xsq_test = require("lib/xsq_test");
      - Issue "script reload"
 */
 
@@ -43,21 +43,38 @@ function xsq_data_v2() {
 
     if((xsq_activated == "yes") && (veh_on() || charging() || bus_awake())) {
 
-        var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
+        var newdata = OvmsConfig.Get("usr", "xsq.data", "0,0,0,0,0,0").split(",");
+
         var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
-        var xsq_power_bms = OvmsMetrics.Value("xsq.bms.power");
-        var xsq_amp2 = OvmsMetrics.Value("xsq.bms.amp2");
-        var xsq_voltage = OvmsMetrics.Value("xsq.bms.batt.link.voltage");
-        // var xsq_odo_start = OvmsMetrics.Value("xsq.odometer.start");
-        var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
-       
-        OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
-        OvmsCommand.Exec('me set v.c.current '+ xsq_amp2);
-        OvmsCommand.Exec('me set v.c.power '+ xsq_power_bms);
-        OvmsCommand.Exec('me set v.c.voltage '+ xsq_voltage);
-        OvmsCommand.Exec('me set v.b.power '+ xsq_energy_hv);
-        // OvmsCommand.Exec('me set  '+ xsq_odo_start);
-        OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
+
+        if (newdata[0] == 1) {
+            var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
+            OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
+        }
+
+        if (newdata[1] == 1) {
+            OvmsCommand.Exec('me set v.b.power '+ xsq_energy_hv);
+        }
+
+        if (newdata[2] == 1) {
+            var xsq_power_bms = OvmsMetrics.Value("xsq.bms.power");
+            OvmsCommand.Exec('me set v.c.power '+ xsq_power_bms);
+        }
+
+        if (newdata[3] == 1) {
+            var xsq_amp2 = OvmsMetrics.Value("xsq.bms.amp2");
+            OvmsCommand.Exec('me set v.c.current '+ xsq_amp2);
+        }
+        
+        if (newdata[4] == 1) {
+            var xsq_voltage = OvmsMetrics.Value("xsq.bms.batt.link.voltage");
+            OvmsCommand.Exec('me set v.c.voltage '+ xsq_voltage);
+        }
+
+        if (newdata[5] == 1) {
+            var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
+            OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
+        }
 
         if(charging() && !state.start_charging){
             state.start_charging = true;
