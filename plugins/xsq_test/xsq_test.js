@@ -33,6 +33,9 @@ function veh_on() {
 function charging() {
     return OvmsMetrics.Value("v.c.charging");
 }
+function charge_port() {
+    return OvmsMetrics.Value("v.d.cp");
+}
 function bus_awake() {
     return OvmsMetrics.Value("xsq.v.bus.awake");
 }
@@ -47,31 +50,31 @@ function xsq_data_v2() {
 
         var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
 
-        //  config set usr xsq.data 0,0,0,0,0,1
-
+        //  config set usr xsq.data 1,1,0,1,1,0
         if (newdata[0] == 1) {
-            var xsq_climit = OvmsMetrics.Value("xsq.bms.amps");
-            OvmsCommand.Exec('me set v.c.climit '+ xsq_climit);
-        }
-        if (newdata[1] == 1) {
             OvmsCommand.Exec('me set v.b.power '+ xsq_energy_hv);
         }
-        if (newdata[2] == 1) {
-            var xsq_power_bms = OvmsMetrics.Value("xsq.bms.power");
-            OvmsCommand.Exec('me set v.c.power '+ xsq_power_bms);
-        }
-        if (newdata[3] == 1) {
-            var xsq_amp2 = OvmsMetrics.Value("xsq.bms.amp2");
-            OvmsCommand.Exec('me set v.c.current '+ xsq_amp2);
-        }        
-        if (newdata[4] == 1) {
-            var xsq_voltage = OvmsMetrics.Value("xsq.bms.batt.link.voltage");
-            OvmsCommand.Exec('me set v.c.voltage '+ xsq_voltage);
-        }
-        if (newdata[5] == 1) {
+        if (newdata[1] == 1) {
             var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
             OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
         }
+        if (newdata[2] == 1) {
+            var xsq_odo_start = OvmsMetrics.Value("xsq.odometer.start");
+            OvmsCommand.Exec('me set  '+ xsq_odo_start);
+        }
+        if (newdata[3] == 1) {
+            var xsq_efficiency = OvmsMetrics.Value("v.c.efficiency");
+            if(charge_port() && (xsq_efficiency >0)){
+                OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
+            }
+        }        
+        if (newdata[4] == 1) {
+            var xsq_time = OvmsMetrics.Value("v.c.time");
+            if(charge_port() && (xsq_time > 0)){
+                OvmsCommand.Exec('me set v.c.12v.current '+ xsq_time);
+            }
+        }
+        
         if(charging() && !state.start_charging){
             state.start_charging = true;
             state.start_kwh = xsq_energy_hv;
