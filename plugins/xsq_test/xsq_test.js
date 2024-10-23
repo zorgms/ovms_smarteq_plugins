@@ -59,19 +59,19 @@ function xsq_data_v2() {
             OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
         }
         if (newdata[2] == 1) {
-            var xsq_odo_start = OvmsMetrics.Value("xsq.odometer.start");
-            OvmsCommand.Exec('me set  '+ xsq_odo_start);
+            //var xsq_odo_start = OvmsMetrics.Value("xsq.odometer.start");
+            //OvmsCommand.Exec('me set  '+ xsq_odo_start);
         }
         if (newdata[3] == 1) {
             var xsq_efficiency = OvmsMetrics.Value("v.c.efficiency");
-            if(charge_port() && (xsq_efficiency >0)){
+            if(charge_port() && (xsq_efficiency > 0)){
                 OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
             }
         }        
         if (newdata[4] == 1) {
-            var xsq_time = OvmsMetrics.Value("v.c.time");
+            var xsq_time = Math.round(Number(OvmsMetrics.Value("v.c.time"))/60);
             if(charge_port() && (xsq_time > 0)){
-                OvmsCommand.Exec('me set v.c.12v.current '+ xsq_time);
+                OvmsCommand.Exec('me set v.c.duration.soc '+ xsq_time);
             }
         }
         

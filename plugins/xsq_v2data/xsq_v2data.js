@@ -49,6 +49,17 @@ function xsq_data_v2() {
         var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
         OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
 
+        if(charge_port()){
+            var xsq_time = Math.round(Number(OvmsMetrics.Value("v.c.time","0"))/60);
+            if(xsq_time > 0){
+                OvmsCommand.Exec('me set v.c.duration.soc '+ xsq_time);
+            }
+            var xsq_efficiency = OvmsMetrics.Value("v.c.efficiency");
+            if(xsq_efficiency >0){
+                OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
+            }
+        }
+
         if(charging() && !state.start_charging){
             state.start_charging = true;
             state.start_kwh = xsq_energy_hv;
