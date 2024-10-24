@@ -9,6 +9,8 @@
 PubSub.unsubscribe('clock.0503');
 PubSub.unsubscribe('clock.1303');
 PubSub.unsubscribe('clock.2103');
+// 
+OvmsCommand.Exec('me set v.t.temp 1,1,1,1');
 
 function ios_tpms_fix() {  
   OvmsCommand.Exec('me set v.t.temp 1,1,1,1');
