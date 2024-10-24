@@ -5,17 +5,12 @@
      - Issue "script reload"
 */
 
-// delete old events
-PubSub.unsubscribe('clock.0503');
-PubSub.unsubscribe('clock.1303');
-PubSub.unsubscribe('clock.2103');
-// 
-OvmsCommand.Exec('me set v.t.temp 1,1,1,1');
+var tpms_etemp = OvmsMetrics.Value("v.e.temp","1");
+OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
 
 function ios_tpms_fix() {  
-  OvmsCommand.Exec('me set v.t.temp 1,1,1,1');
+  var tpms_etemp = OvmsMetrics.Value("v.e.temp","1");
+  OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
 }
 
-PubSub.subscribe('clock.0503',ios_tpms_fix);
-PubSub.subscribe('clock.1303',ios_tpms_fix);
-PubSub.subscribe('clock.2103',ios_tpms_fix);
+PubSub.subscribe('ticker.3600',ios_tpms_fix);
