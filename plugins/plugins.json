@@ -89,5 +89,20 @@
           "path": "xsq_test.js",
           "name": "xsq_test"
         }]
-    }
+    },
+    {
+        "name": "ios_tpms_fix",
+        "title": "set tire temperature",
+        "description": "set tire temperature two times on day for showing pressure in iOS App",
+        "group": "Electric Vehicles",
+        "info": "http://www.openvehicles.com/",
+        "maintainer": "ZorG <zorg.smart@gmail.com>",
+        "version": "1.0",
+        "prerequisites": ["ovms>=3.3.004-239"],
+        "elements": [{
+          "type": "module",
+          "path": "ios_tpms_fix.js",
+          "name": "ios_tpms_fix"
+        }]
+      }
 ]
