@@ -55,8 +55,6 @@ function xsq_data_v2() {
         }
         if(!charging() && state.start_charging){
             state.start_charging = false;
-            OvmsCommand.Exec('me set v.i.efficiency 0');
-            OvmsCommand.Exec('me set v.c.duration.soc 0');
         }
         if(state.start_charging){
             var charged = Number(xsq_energy_hv) - Number(state.start_kwh);
