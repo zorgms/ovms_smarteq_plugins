@@ -5,7 +5,7 @@
      - Issue "script reload"
 */
 
-var tpms_etemp = OvmsMetrics.Value("v.e.temp","1");
+var tpms_etemp = Number(OvmsMetrics.Value("v.e.temp","1"));
 OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
 
 function ios_tpms_fix() {  
