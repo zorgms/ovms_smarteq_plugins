@@ -30,9 +30,11 @@ var xsq_activated = OvmsConfig.Get("usr","xsq.activated","yes");
 function veh_on() {
     return OvmsMetrics.Value("v.e.on");
 }
+/*
 function charging() {
     return OvmsMetrics.Value("v.c.charging");
 }
+*/
 function bus_awake() {
     return OvmsMetrics.Value("xsq.v.bus.awake");
 }
@@ -49,17 +51,6 @@ function xsq_data_v2() {
         var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
         OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
 
-        if(charge_port()){
-            var xsq_time = Math.round(Number(OvmsMetrics.Value("v.c.time","0"))/60);
-            if(xsq_time > 0){
-                OvmsCommand.Exec('me set v.c.duration.soc '+ xsq_time);
-            }
-            var xsq_efficiency = OvmsMetrics.Value("v.c.efficiency");
-            if(xsq_efficiency >0){
-                OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
-            }
-        }
-
         if(charging() && !state.start_charging){
             state.start_charging = true;
             state.start_kwh = xsq_energy_hv;
@@ -70,6 +61,15 @@ function xsq_data_v2() {
         if(state.start_charging){
             var charged = Number(xsq_energy_hv) - Number(state.start_kwh);
             OvmsCommand.Exec('me set v.c.kwh '+ charged);
+
+            var xsq_time = Math.round(Number(OvmsMetrics.Value("v.c.time","0"))/60);
+            if(xsq_time > 0){
+                OvmsCommand.Exec('me set v.c.duration.soc '+ xsq_time);
+            }
+            var xsq_efficiency = OvmsMetrics.Value("v.c.efficiency");
+            if(xsq_efficiency >0){
+                OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
+            }
         }
     }
 }
