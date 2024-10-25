@@ -63,7 +63,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.3.7",
+        "version": "1.3.8",
         "prerequisites": [
             "ovms>=3.3.004-267"
         ],
