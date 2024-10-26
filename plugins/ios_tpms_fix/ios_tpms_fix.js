@@ -9,7 +9,7 @@ var tpms_etemp = Number(OvmsMetrics.Value("v.e.temp"));
 OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
 
 function ios_tpms_fix() {  
-  var tpms_etemp = OvmsMetrics.Value("v.e.temp");
+  var tpms_etemp = Number(OvmsMetrics.Value("v.e.temp"));
   OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
 }
 
