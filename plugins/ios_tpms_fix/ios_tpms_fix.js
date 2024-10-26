@@ -6,11 +6,13 @@
 */
 
 var tpms_etemp = OvmsMetrics.Value("v.e.temp");
-OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
+var tpms_ecabintemp = OvmsMetrics.Value("v.e.cabintemp");
+OvmsCommand.Exec('me set v.t.temp ' + tpms_ecabintemp + "," + tpms_ecabintemp + "," + tpms_etemp + "," + tpms_etemp);
 
 function ios_tpms_fix() {  
   var tpms_etemp = OvmsMetrics.Value("v.e.temp");
-  OvmsCommand.Exec('me set v.t.temp ' + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp + "," + tpms_etemp);
+  var tpms_ecabintemp = OvmsMetrics.Value("v.e.cabintemp");
+  OvmsCommand.Exec('me set v.t.temp ' + tpms_ecabintemp + "," + tpms_ecabintemp + "," + tpms_etemp + "," + tpms_etemp);
 }
 
 PubSub.subscribe('ticker.3600',ios_tpms_fix);
