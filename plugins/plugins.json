@@ -93,7 +93,7 @@
     {
         "name": "ios_tpms_fix",
         "title": "set tire temperature",
-        "description": "set tire temperature three times on day for showing pressure in iOS App",
+        "description": "set tire temperature hourly for showing pressure in iOS App",
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
