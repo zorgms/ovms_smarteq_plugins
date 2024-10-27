@@ -13,15 +13,18 @@ if(init_usrcfg == "no"){
     OvmsConfig.Set("usr", "xsq.init", "yes");       // init usr config
     OvmsConfig.Set("usr", "xsq.activated", "yes");   // ticker activated     
     OvmsConfig.Set("usr", "xsq.ticker", "10");     	// ticker format 1/10/60/300/600/3600 seconds
+    OvmsConfig.Set("usr", "xsq.pubsub", "0");       // PubSub ID
 }
 
-var state = {
+var xsq = {
+    init: false,
     start_charging: false,       // switch for start charge
-    start_kwh: 0.00
+    start_kwh: 0.00,
+    pubsub: OvmsConfig.Get("usr","xsq.pubsub", "0"),
 };
 
 // delete old events
-PubSub.unsubscribe(xsq_data_v2);
+PubSub.unsubscribe(xsq.pubsub);
 
 // get value
 var xsq_ticker = 'ticker.' + OvmsConfig.Get("usr","xsq.ticker","10");
@@ -49,15 +52,15 @@ function xsq_data_v2() {
         var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
         OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
 
-        if(charging() && !state.start_charging){
-            state.start_charging = true;
-            state.start_kwh = xsq_energy_hv;
+        if(charging() && !xsq.start_charging){
+            xsq.start_charging = true;
+            xsq.start_kwh = xsq_energy_hv;
         }
-        if(!charging() && state.start_charging){
-            state.start_charging = false;
+        if(!charging() && xsq.start_charging){
+            xsq.start_charging = false;
         }
-        if(state.start_charging){
-            var charged = Number(xsq_energy_hv) - Number(state.start_kwh);
+        if(xsq.start_charging){
+            var charged = Number(xsq_energy_hv) - Number(xsq.start_kwh);
             OvmsCommand.Exec('me set v.c.kwh '+ charged);
 
             var xsq_time = Number(OvmsMetrics.Value("v.c.time"))/60;
@@ -73,6 +76,8 @@ function xsq_data_v2() {
 }
 
 // event creating
-if(xsq_activated == "yes"){
-    PubSub.subscribe(xsq_ticker,xsq_data_v2);
+if(!xsq.init){
+    xsq.init = true;
+    xsq.pubsub = PubSub.subscribe(xsq_ticker,xsq_data_v2);
+    OvmsConfig.Set("usr", "xsq.pubsub", xsq.pubsub);
 }

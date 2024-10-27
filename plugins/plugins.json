@@ -6,7 +6,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.0",
+        "version": "2.0",
         "prerequisites": [
             "ovms>=3.3.004-239"
         ],
@@ -25,7 +25,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.2",
+        "version": "2.0",
         "prerequisites": [
             "ovms>=3.3.004-239"
         ],
@@ -40,11 +40,11 @@
     {
         "name": "scheduled_booster",
         "title": "Scheduled Booster",
-        "description": "Time-controlled climate activation for Smart EQ (453)",
+        "description": "Time-controlled climate activation",
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.0",
+        "version": "2.0",
         "prerequisites": [
             "ovms>=3.3.004-239"
         ],
@@ -63,7 +63,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.4.0",
+        "version": "2.0",
         "prerequisites": [
             "ovms>=3.3.004-267"
         ],
