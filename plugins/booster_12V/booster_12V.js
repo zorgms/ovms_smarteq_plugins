@@ -56,7 +56,7 @@ function charge_12v_check() {
       if (voltage_12v <= alert_12v ) {
         OvmsVehicle.ClimateControl("on");
         state_12v.booster_2 = PubSub.subscribe('ticker.60',scheduled_boost_2);
-        OvmsConfig.Set("usr", "12v.ps_booster_2", booster.booster_2);
+        OvmsConfig.Set("usr", "12v.ps_booster_2", state_12v.booster_2);
       }
   }
 }
@@ -83,6 +83,6 @@ if(!state_12v.init){
   PubSub.unsubscribe(state_12v.booster_2);
   state_12v.time_1 = PubSub.subscribe(time_on_1,charge_12v_check);
   state_12v.time_2 = PubSub.subscribe(time_on_2,charge_12v_check);
-  OvmsConfig.Set("usr", "12v.ps_time_1", booster.time_1);
-  OvmsConfig.Set("usr", "12v.ps_time_2", booster.time_2);
+  OvmsConfig.Set("usr", "12v.ps_time_1", state_12v.time_1);
+  OvmsConfig.Set("usr", "12v.ps_time_2", state_12v.time_2);
 }
