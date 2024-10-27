@@ -63,7 +63,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "2.0",
+        "version": "2.1",
         "prerequisites": [
             "ovms>=3.3.004-267"
         ],
@@ -74,21 +74,6 @@
                 "name": "xsq_v2data"
             }
         ]
-    },
-    {
-        "name": "xsq_test",
-        "title": "xsq_test",
-        "description": "copy xsq metrics to standard metrics",
-        "group": "Electric Vehicles",
-        "info": "http://www.openvehicles.com/",
-        "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.0.3",
-        "prerequisites": ["ovms>=3.3.004-267"],
-        "elements": [{
-          "type": "module",
-          "path": "xsq_test.js",
-          "name": "xsq_test"
-        }]
     },
     {
         "name": "ios_tpms_fix",

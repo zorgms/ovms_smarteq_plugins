@@ -47,10 +47,10 @@ function xsq_data_v2() {
     if((xsq_activated == "yes") && (veh_on() || charging() || bus_awake())) {
 
         var xsq_energy_hv = OvmsMetrics.Value("xsq.evc.hv.energy");
-        OvmsCommand.Exec('me set v.b.power '+ xsq_energy_hv);
+        OvmsCommand.Exec('me set v.i.power '+ xsq_energy_hv);
 
         var xsq_use_reset = OvmsMetrics.Value("xsq.use.at.reset");
-        OvmsCommand.Exec('me set v.i.power '+ xsq_use_reset);
+        OvmsCommand.Exec('me set v.m.temp '+ xsq_use_reset);
 
         if(charging() && !xsq.start_charging){
             xsq.start_charging = true;
