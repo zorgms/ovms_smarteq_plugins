@@ -63,13 +63,10 @@ function xsq_data_v2() {
             var charged = Number(xsq_energy_hv) - Number(xsq.start_kwh);
             OvmsCommand.Exec('me set v.c.kwh '+ charged);
 
-            var xsq_time = Number(OvmsMetrics.Value("v.c.time"))/60;
+            var xsq_time = Number(OvmsMetrics.Value("v.c.time"));
             if(xsq_time > 0){
-                OvmsCommand.Exec('me set v.c.duration.soc '+ xsq_time);
-            }
-            var xsq_efficiency = Number(OvmsMetrics.Value("v.c.efficiency"));
-            if(xsq_efficiency > 0){
-                OvmsCommand.Exec('me set v.i.efficiency '+ xsq_efficiency);
+                OvmsCommand.Exec('me set v.i.temp '+ (xsq_time / 60));
+                // OvmsCommand.Exec('me set v.c.duration.soc '+ (xsq_time / 60));
             }
         }
     }
