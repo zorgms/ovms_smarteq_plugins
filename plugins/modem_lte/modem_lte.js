@@ -27,6 +27,10 @@ PubSub.unsubscribe(lte.ticker);
 // get value
 var ticker = 'ticker.' + OvmsConfig.Get("usr","lte.ticker", "600");
 
+function veh_on() {
+  return OvmsMetrics.Value("v.e.on");
+}
+
 function lte_check() {
   var lte_mode = OvmsMetrics.Value("m.net.mdm.mode");
   var lte_network = OvmsMetrics.Value("m.net.mdm.network");
