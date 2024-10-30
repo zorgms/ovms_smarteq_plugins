@@ -93,11 +93,11 @@
       {
         "name": "modem_lte",
         "title": "keep LTE modem connection ",
-        "description": "check and charge the 12V battery two times on day",
+        "description": "The module plugin keep LTE modem connection. At GSM will modem restart",
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.0.",
+        "version": "1.0",
         "prerequisites": ["ovms>=3.3.004-239"],
         "elements": [{
           "type": "module",
