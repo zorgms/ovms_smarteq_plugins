@@ -66,7 +66,6 @@ function xsq_data_v2() {
             var xsq_time = Number(OvmsMetrics.Value("v.c.time"));
             if(xsq_time > 0){
                 OvmsCommand.Exec('me set v.i.temp '+ (xsq_time / 60));
-                // OvmsCommand.Exec('me set v.c.duration.soc '+ (xsq_time / 60));
             }
         }
     }

@@ -18,6 +18,7 @@ if(init_usrcfg == "no"){
 var lte = {
   init: false,
   counter: 0,
+  gsm2lte: Number(OvmsConfig.Get("usr","lte.gsm2lte", "0")),
   ticker: OvmsConfig.Get("usr","lte.ps_ticker", "0"),       // subscription
 };
 
@@ -38,6 +39,8 @@ function lte_check() {
 
   if ((lte_mode[0] != "LTE") && (lte_network == "modem") && (lte_reg == "RegisteredRoaming")) {
       lte.counter = lte.counter +1;
+      lte.gsm2lte = lte.gsm2lte +1;
+      OvmsConfig.Set("usr", "lte.gsm2lte", lte.gsm2lte);
       if(lte.counter > 5) {
         lte.counter = 0;
         OvmsConfig.Set("usr", "lte.ps_ticker", "0");
