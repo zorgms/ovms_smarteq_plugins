@@ -19,6 +19,7 @@ if(init_usrcfg == "no"){
 var lte = {
   init: false,
   counter: 0,
+  modemsqbad: Number(OvmsConfig.Get("network","modem.sq.bad", "-100")),
   gsm2lte: Number(OvmsConfig.Get("usr","lte.gsm2lte", "0")),
   ticker: OvmsConfig.Get("usr","lte.ps_ticker", "0"),       // subscription
 };
@@ -28,6 +29,14 @@ PubSub.unsubscribe(lte.ticker);
 
 // get value
 var ticker = 'ticker.' + OvmsConfig.Get("usr","lte.ticker", "600");
+var xsq_activated = OvmsConfig.Get("usr","xsq.activated","yes");
+
+if (lte.modemsqbad > -110){
+  OvmsConfig.Set("network", "modem.sq.bad", "-110");
+  OvmsConfig.Set("network", "modem.sq.good", "-50");
+  OvmsConfig.Set("network", "wifi.sq.bad", "-88");
+  OvmsConfig.Set("network", "wifi.sq.good", "-50");
+}
 
 function veh_on() {
   return OvmsMetrics.Value("v.e.on");
