@@ -33,7 +33,7 @@ function veh_on() {
 }
 
 function lte_check() {
-  var lte_mode = OvmsMetrics.Value("m.net.mdm.mode");
+  var lte_mode = OvmsMetrics.Value("m.net.mdm.mode").split(",");
   var lte_network = OvmsMetrics.Value("m.net.mdm.network");
   var lte_reg = OvmsMetrics.Value("m.net.mdm.netreg");
 
