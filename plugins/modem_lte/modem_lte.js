@@ -35,20 +35,21 @@ function veh_on() {
 
 function lte_check() {
   var lte_mode = OvmsMetrics.Value("m.net.mdm.mode");
-  var lte_network = OvmsMetrics.Value("m.net.mdm.network");
-  var lte_reg = OvmsMetrics.Value("m.net.mdm.netreg");
 
-  if ((lte_mode.includes("GSM")) && (lte_network == "modem") && (lte_reg == "RegisteredRoaming")) {
-      lte.counter = lte.counter +1;
-      lte.gsm2lte = lte.gsm2lte +1;
-      OvmsConfig.Set("usr", "lte.gsm2lte", lte.gsm2lte);
-      if(lte.counter > 5) {
-        lte.counter = 0;
-        OvmsConfig.Set("usr", "lte.ps_ticker", "0");
-        OvmsCommand.Exec("mo re");
-      } else {
-        OvmsCommand.Exec("cellular setstate PowerOffOn");
-      }
+  if (lte_mode.includes("GSM")) {
+    lte.counter = lte.counter +1;
+    lte.gsm2lte = lte.gsm2lte +1;
+    OvmsConfig.Set("usr", "lte.gsm2lte", lte.gsm2lte);
+    if(lte.counter > 5) {
+      lte.counter = 0;
+      OvmsConfig.Set("usr", "lte.ps_ticker", "0");
+      OvmsCommand.Exec("mo re");
+    } else {
+      OvmsCommand.Exec("cellular setstate PowerOffOn");
+    }
+  }
+  if ((lte_mode.includes("LTE"))&&(lte.counter > 0)) {
+    lte.counter = 0;
   }
 }
 
