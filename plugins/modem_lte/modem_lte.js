@@ -13,6 +13,7 @@ if(init_usrcfg == "no"){
     OvmsConfig.Set("usr", "lte.init", "yes");      // init usr config
     OvmsConfig.Set("usr", "lte.ticker", "600");    // ticker format 1/10/60/300/600/3600 seconds
     OvmsConfig.Set("usr", "lte.ps_ticker", "0");   // PubSub ID subscription
+    OvmsConfig.Set("usr", "lte.gsm2lte", "0");
 }
 
 var lte = {
@@ -37,7 +38,7 @@ function lte_check() {
   var lte_network = OvmsMetrics.Value("m.net.mdm.network");
   var lte_reg = OvmsMetrics.Value("m.net.mdm.netreg");
 
-  if ((lte_mode[0] != "LTE") && (lte_network == "modem") && (lte_reg == "RegisteredRoaming")) {
+  if ((toString(lte_mode[0]) == "GSM") && (lte_network == "modem") && (lte_reg == "RegisteredRoaming")) {
       lte.counter = lte.counter +1;
       lte.gsm2lte = lte.gsm2lte +1;
       OvmsConfig.Set("usr", "lte.gsm2lte", lte.gsm2lte);
