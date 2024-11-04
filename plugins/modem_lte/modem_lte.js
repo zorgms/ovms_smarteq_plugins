@@ -14,12 +14,13 @@ if(init_usrcfg == "no"){
     OvmsConfig.Set("usr", "lte.ticker", "600");    // ticker format 1/10/60/300/600/3600 seconds
     OvmsConfig.Set("usr", "lte.ps_ticker", "0");   // PubSub ID subscription
     OvmsConfig.Set("usr", "lte.gsm2lte", "0");
+    OvmsConfig.Set("usr", "lte.setsq", "yes");
 }
 
 var lte = {
   init: false,
   counter: 0,
-  modemsqbad: Number(OvmsConfig.Get("network","modem.sq.bad", "-100")),
+  modemsq: OvmsConfig.Get("usr","lte.setsq", "yes"),
   gsm2lte: Number(OvmsConfig.Get("usr","lte.gsm2lte", "0")),
   ticker: OvmsConfig.Get("usr","lte.ps_ticker", "0"),       // subscription
 };
@@ -31,11 +32,12 @@ PubSub.unsubscribe(lte.ticker);
 var ticker = 'ticker.' + OvmsConfig.Get("usr","lte.ticker", "600");
 var xsq_activated = OvmsConfig.Get("usr","xsq.activated","yes");
 
-if (lte.modemsqbad > -110){
-  OvmsConfig.Set("network", "modem.sq.bad", "-110");
-  OvmsConfig.Set("network", "modem.sq.good", "-50");
-  OvmsConfig.Set("network", "wifi.sq.bad", "-88");
-  OvmsConfig.Set("network", "wifi.sq.good", "-50");
+if (lte.modemsq == "yes"){
+  OvmsConfig.Set("network", "modem.sq.bad", "-95");
+  OvmsConfig.Set("network", "modem.sq.good", "-90");
+  OvmsConfig.Set("network", "wifi.sq.bad", "-89");
+  OvmsConfig.Set("network", "wifi.sq.good", "-85");
+  OvmsConfig.Set("usr", "lte.setsq", "no");
 }
 
 function veh_on() {
