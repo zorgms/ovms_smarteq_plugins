@@ -54,9 +54,9 @@ function lte_check() {
     if(lte.counter > 5) {
       lte.counter = 0;
       OvmsConfig.Set("usr", "lte.ps_ticker", "0");
-      OvmsCommand.Exec("mo re");
-    } else {
       OvmsCommand.Exec("cellular setstate PowerOffOn");
+    } else {
+      OvmsCommand.Exec('cellular cmd AT+COPS=0,0,"Telekom.de",7');
     }
   }
   if ((lte_mode.includes("LTE"))&&(lte.counter > 0)) {
