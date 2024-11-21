@@ -55,7 +55,7 @@ function charge_12v_check() {
   if(!veh_on() && !charging())  {
       if (voltage_12v <= alert_12v ) {
         OvmsVehicle.ClimateControl("on");
-        state_12v.booster_2 = PubSub.subscribe('ticker.60',scheduled_boost_2);
+        state_12v.booster_2 = PubSub.subscribe('ticker.60',charge_12v_boost_2);
         OvmsConfig.Set("usr", "12v.ps_booster_2", state_12v.booster_2);
       }
   }
