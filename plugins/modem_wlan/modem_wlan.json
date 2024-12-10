@@ -1,0 +1,17 @@
+{
+  "name": "modem_wlan",
+  "title": "switch WLAN/LTE modem connection ",
+  "description": "The module plugin switch WLAN/LTE modem connection. At no WLAN will modem restart",
+  "group": "Electric Vehicles",
+  "info": "http://www.openvehicles.com/",
+  "maintainer": "ZorG <zorg.smart@gmail.com>",
+  "version": "1.0.0",
+  "prerequisites": ["ovms>=3.3.004-239"],
+  "elements": [
+    {
+      "type": "module",
+      "path": "modem_wlan.js",
+      "name": "modem_wlan"
+    }
+  ]
+}
