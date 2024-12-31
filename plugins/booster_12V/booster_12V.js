@@ -47,13 +47,14 @@ function veh_hvac() {
   return OvmsMetrics.Value("v.e.hvac");
 }
 
+function alert_12v() {
+  return OvmsMetrics.Value("v.e.hvac");
+}
+
 function charge_12v_check() {
-  
-  var voltage_12v = OvmsMetrics.Value("v.b.12v.voltage");
-  var alert_12v = OvmsConfig.Get("vehicle","12v.alert","12.2");
 
   if(!veh_on() && !charging())  {
-      if (voltage_12v <= alert_12v ) {
+      if (alert_12v()) {
         OvmsVehicle.ClimateControl("on");
         state_12v.booster_2 = PubSub.subscribe('ticker.60',charge_12v_boost_2);
         OvmsConfig.Set("usr", "12v.ps_booster_2", state_12v.booster_2);

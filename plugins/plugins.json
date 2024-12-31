@@ -6,7 +6,7 @@
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "2.0.2",
+        "version": "2.0.3",
         "prerequisites": [
             "ovms>=3.3.004-239"
         ],
@@ -54,40 +54,6 @@
                 "path": "scheduled_booster.js",
                 "name": "scheduled_booster"
             }
-        ]
-    },
-    {
-    "name": "modem_lte",
-    "title": "keep LTE modem connection ",
-    "description": "The module plugin keep LTE modem connection. At GSM will modem restart",
-    "group": "Electric Vehicles",
-    "info": "http://www.openvehicles.com/",
-    "maintainer": "ZorG <zorg.smart@gmail.com>",
-    "version": "1.1.0",
-    "prerequisites": ["ovms>=3.3.004-239"],
-    "elements": [
-        {
-            "type": "module",
-            "path": "modem_lte.js",
-            "name": "modem_lte"
-        }
-    ]
-    },
-    {
-        "name": "modem_wlan",
-        "title": "switch WLAN/LTE modem connection ",
-        "description": "The module plugin switch WLAN/LTE modem connection. At no WLAN will modem restart",
-        "group": "Electric Vehicles",
-        "info": "http://www.openvehicles.com/",
-        "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "1.0.0",
-        "prerequisites": ["ovms>=3.3.004-239"],
-        "elements": [
-          {
-            "type": "module",
-            "path": "modem_wlan.js",
-            "name": "modem_wlan"
-          }
         ]
     }
 ]
