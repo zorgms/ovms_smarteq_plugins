@@ -48,7 +48,7 @@ function veh_hvac() {
 }
 
 function alert_12v() {
-  return OvmsMetrics.Value("v.e.hvac");
+  return OvmsMetrics.Value("v.b.12v.voltage.alert");
 }
 
 function charge_12v_check() {
