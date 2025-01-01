@@ -10,17 +10,20 @@
 var init_usrcfg = OvmsConfig.Get("usr","12v.init", "no");
 
 if(init_usrcfg == "no"){
-    OvmsConfig.Set("usr", "12v.init", "yes");      // init usr config
-    OvmsConfig.Set("usr", "12v.charging", "yes");  // activate 12V charging events
-    OvmsConfig.Set("usr", "12v.ps_time_1", "0");       // PubSub ID time 1 subscription
-    OvmsConfig.Set("usr", "12v.ps_booster_2", "0");    // PubSub ID 2x booster subscription
+    OvmsConfig.Set("usr", "12v.init", "yes");        // init usr config
+    OvmsConfig.Set("usr", "12v.counter", "10");      // activate 12V charging when 10 minutes alert is active
+    OvmsConfig.Set("usr", "12v.ps_time_1", "0");     // PubSub ID time 1 subscription
+    OvmsConfig.Set("usr", "12v.ps_time_1", "0");     // PubSub ID time 1 subscription
+    OvmsConfig.Set("usr", "12v.ps_booster_2", "0");  // PubSub ID 2x booster subscription
 }
 
 var state_12v = {
   init: false,
   alert: false,
-  time_1: OvmsConfig.Get("usr","12v.ps_time_1", "0"),       // time 1 subscription
-  booster_2: OvmsConfig.Get("usr","12v.ps_booster_2", "0"), // 2x booster subscription
+  counter: 0,
+  counter_max: Number(OvmsConfig.Get("usr","12v.counter", "10")),   // 10 minutes alert
+  time_1: OvmsConfig.Get("usr","12v.ps_time_1", "0"),               // time 1 subscription
+  booster_2: OvmsConfig.Get("usr","12v.ps_booster_2", "0"),         // 2x booster subscription
 };
 
 // delete old events
@@ -48,14 +51,17 @@ function alert_12v() {
 }
 
 function charge_12v_check() {
-
-  if(!veh_on() && !charging())  {
-      if (alert_12v() && !state_12v.alert) {
-        state_12v.alert = true;
-        OvmsVehicle.ClimateControl("on");
-        state_12v.booster_2 = PubSub.subscribe('ticker.60',charge_12v_boost_2);
-        OvmsConfig.Set("usr", "12v.ps_booster_2", state_12v.booster_2);
-      }
+  if(!veh_on() && !charging() && !veh_hvac() && !state_12v.alert) {
+    state_12v.counter = state_12v.counter + 1;
+    if (alert_12v() && !state_12v.alert && state_12v.counter >= state_12v.counter_max) {
+      state_12v.alert = true;
+      state_12v.counter = 0;
+      OvmsVehicle.ClimateControl("on");
+      state_12v.booster_2 = PubSub.subscribe('ticker.60',charge_12v_boost_2);
+      OvmsConfig.Set("usr", "12v.ps_booster_2", state_12v.booster_2);
+    }
+  } else {
+    state_12v.counter = 0;
   }
 }
 
@@ -64,10 +70,12 @@ function charge_12v_boost_2() {
   if(!veh_on() && !charging() && !veh_hvac()) {
     OvmsVehicle.ClimateControl("on");
     state_12v.alert = false;
+    state_12v.counter = 0;
     PubSub.unsubscribe(state_12v.booster_2);
   }
   if(veh_on()) {
     state_12v.alert = false;
+    state_12v.counter = 0;
     PubSub.unsubscribe(state_12v.booster_2);
   }
 }
