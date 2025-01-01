@@ -2,11 +2,11 @@
     {
         "name": "booster_12V",
         "title": "check and charge 12V",
-        "description": "check and charge the 12V battery two times on day",
+        "description": "charge the 12V battery when 12V alarm is triggered",
         "group": "Electric Vehicles",
         "info": "http://www.openvehicles.com/",
         "maintainer": "ZorG <zorg.smart@gmail.com>",
-        "version": "2.1.0",
+        "version": "2.1.1",
         "prerequisites": [
             "ovms>=3.3.004-239"
         ],

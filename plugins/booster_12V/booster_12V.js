@@ -30,6 +30,7 @@ PubSub.unsubscribe(state_12v.booster_2);
 // get value
 var time_on_1 = 'clock.' + OvmsConfig.Get("usr","12v.time_1", "1900"); 
 var charging_12v = OvmsConfig.Get("usr", "12v.charging", "yes");
+OvmsCommand.Exec('me set v.b.12v.voltage.alert no');
 
 function veh_on() {
   return OvmsMetrics.Value("v.e.on");
